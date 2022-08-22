@@ -1,0 +1,31 @@
+parameters:
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+di:
+	export:
+		parameters: no
+		tags: no
+
+
+services:
+	- App\Router\RouterFactory::createRouter
+	- App\Model\LoginManager
+	- App\Model\RegisterManager
+	- App\Model\StajManager
+	- App\Model\Authorization
+	- App\Model\Entity\Uzivatel
+	- App\Model\Repository\UzivatelRepository
+	- App\Model\Repository\StajRepository
+	- App\Model\Repository\ZvireRepository
+	- App\Model\Service
+	security.passwords: Nette\Security\Passwords(::PASSWORD_BCRYPT, [cost: 12])
