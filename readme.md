@@ -34,8 +34,6 @@ nettrine.dbal:
 6. Insert **SECRET_KEY,SECRET_KEY2** for JWT authentication
 
 ```
-PROJECT_ID = <project_id>
-BUCKET_NAME = <bucket_name>
 SECRET_KEY = <refresh_key>
 SECRET_KEY2 = <access_key>
 ```
