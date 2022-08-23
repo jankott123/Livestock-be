@@ -1,46 +1,43 @@
-Nette Web Project
-=================
+# Photo storage - backend API
+![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
 
-This is a simple, skeleton application using the [Nette](https://nette.org). This is meant to
-be used as a starting point for your new projects.
+Backend API for https://github.com/jankott123/Livestock-fe
 
-[Nette](https://nette.org) is a popular tool for PHP web development.
-It is designed to be the most usable and friendliest as possible. It focuses
-on security and performance and is definitely one of the safest PHP frameworks.
+## Project description
 
-If you like Nette, **[please make a donation now](https://nette.org/donate)**. Thank you!
+Backend solution for livestock managing. Developed with PHP and Nette framework. 
 
 
-Requirements
-------------
+## How to run API 
 
-- Web Project for Nette 3.1 requires PHP 7.2
+To run this api: 
 
+1. Create file **credentialsDb.neon** in folder **config**.
+2. Insert following code with your PostgreSQL database **credentials**: 
 
-Installation
-------------
+```
+nettrine.dbal:
+	debug:
+		panel: %debugMode%
+	configuration:
+	
+	connection:
+		driver: pdo_pgsql
+		host: <host_name>
+		user: <user>
+		password: <password>
+		dbname: <db_name>
+		port: <port>
+```
 
-The best way to install Web Project is using Composer. If you don't have Composer yet,
-download it following [the instructions](https://doc.nette.org/composer). Then use command:
+5. Create **.env** file in root directory
+6. Insert **SECRET_KEY,SECRET_KEY2** for JWT authentication
 
-	composer create-project nette/web-project path/to/install
-	cd path/to/install
+```
+PROJECT_ID = <project_id>
+BUCKET_NAME = <bucket_name>
+SECRET_KEY = <refresh_key>
+SECRET_KEY2 = <access_key>
+```
+7. Database dump is in **db_livestock.txt**
 
-
-Make directories `temp/` and `log/` writable.
-
-
-Web Server Setup
-----------------
-
-The simplest way to get started is to start the built-in PHP server in the root directory of your project:
-
-	php -S localhost:8000 -t www
-
-Then visit `http://localhost:8000` in your browser to see the welcome page.
-
-For Apache or Nginx, setup a virtual host to point to the `www/` directory of the project and you
-should be ready to go.
-
-**It is CRITICAL that whole `app/`, `config/`, `log/` and `temp/` directories are not accessible directly
-via a web browser. See [security warning](https://nette.org/security-warning).**
