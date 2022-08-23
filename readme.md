@@ -1,4 +1,4 @@
-# Photo storage - backend API
+# Livestock - backend API
 ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
 
 Backend API for https://github.com/jankott123/Livestock-fe
