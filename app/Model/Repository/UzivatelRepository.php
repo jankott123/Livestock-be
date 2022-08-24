@@ -65,7 +65,6 @@ class UzivatelRepository
         $uzivatel->setJmeno($jmeno);
         $uzivatel->setPrijmeni($prijmeni);
 
-        $this->decorator->merge($uzivatel);
         $this->decorator->flush();
 
     }
