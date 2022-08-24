@@ -24,11 +24,11 @@ class Bootstrap
 			->addDirectory(__DIR__)
 			->register();
 
-		$configurator->addConfig($appDir . '/config/common.neon');
-		$configurator->addConfig($appDir . '/config/local.neon');
-		$configurator->addConfig($appDir . '/config/doctrine.neon');
-		$configurator->addConfig($appDir . '/config/credentialsDb.neon');
-
+			$configurator->addConfig($appDir . '/config/common.neon');
+			$configurator->addConfig($appDir . '/config/local.neon');
+			$configurator->addConfig($appDir . '/config/doctrine.neon');
+			$configurator->addConfig($appDir . '/config/credentialsDb.neon');
+			
 		return $configurator;
 	}
 }

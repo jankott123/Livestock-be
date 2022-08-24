@@ -34,6 +34,8 @@ class Authorization
         } catch (Exception $e) { // Also tried JwtException
 
             return $valid = false;
+
+            
         }
     }
 
@@ -65,7 +67,7 @@ class Authorization
             $audience_claim = "THE_AUDIENCE";
             $issuedat_claim = time(); // issued at
             $notbefore_claim = $issuedat_claim; //not before in seconds
-            $expire_claim = $issuedat_claim + 25000000; // expire time in seconds
+            $expire_claim = $issuedat_claim + 25000000; 
             $expire_claim2 = $issuedat_claim + 11;
 
             $token2 = array(

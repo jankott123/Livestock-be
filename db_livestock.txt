@@ -1,0 +1,342 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.1
+-- Dumped by pg_dump version 14.1
+
+-- Started on 2022-08-23 09:52:18 CEST
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 216 (class 1259 OID 16448)
+-- Name: hmotnost; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.hmotnost (
+    id integer NOT NULL,
+    id_zvirete integer,
+    hmotnost integer NOT NULL,
+    datum date NOT NULL
+);
+
+
+ALTER TABLE public.hmotnost OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 16447)
+-- Name: hmotnost_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.hmotnost_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.hmotnost_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3615 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: hmotnost_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.hmotnost_id_seq OWNED BY public.hmotnost.id;
+
+
+--
+-- TOC entry 210 (class 1259 OID 16388)
+-- Name: staj; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.staj (
+    id integer NOT NULL,
+    id_uzivatele integer,
+    nazev character varying(50) NOT NULL,
+    date character varying(50) NOT NULL,
+    druh_zvirete character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.staj OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 16387)
+-- Name: staj_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.staj_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.staj_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3616 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: staj_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.staj_id_seq OWNED BY public.staj.id;
+
+
+--
+-- TOC entry 212 (class 1259 OID 16397)
+-- Name: uzivatel; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.uzivatel (
+    id integer NOT NULL,
+    uzivatel_jmeno character varying(50) NOT NULL,
+    heslo character varying(500) NOT NULL,
+    email character varying(100) NOT NULL,
+    aktivacni_klic character varying(50) DEFAULT NULL::character varying,
+    telefon integer,
+    mesto character varying(100) DEFAULT NULL::character varying,
+    ulice character varying(100) DEFAULT NULL::character varying,
+    psc integer,
+    cislo_popisne integer,
+    jmeno character varying(100) DEFAULT NULL::character varying,
+    prijmeni character varying(100) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public.uzivatel OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 16396)
+-- Name: uzivatel_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.uzivatel_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.uzivatel_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3617 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: uzivatel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.uzivatel_id_seq OWNED BY public.uzivatel.id;
+
+
+--
+-- TOC entry 214 (class 1259 OID 16412)
+-- Name: zvire; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.zvire (
+    id integer NOT NULL,
+    id_uzivatele integer,
+    id_staj integer,
+    nazev_druhu character varying(50) NOT NULL,
+    pohlavi character varying(12) NOT NULL,
+    usni_cislo character varying(50) NOT NULL,
+    datum_narozeni character varying(50) NOT NULL,
+    plemeno character varying(12) NOT NULL,
+    matka character varying(30) NOT NULL,
+    otec character varying(30) NOT NULL,
+    dojene character varying(30) NOT NULL
+);
+
+
+ALTER TABLE public.zvire OWNER TO postgres;
+
+--
+-- TOC entry 213 (class 1259 OID 16411)
+-- Name: zvire_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.zvire_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.zvire_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3618 (class 0 OID 0)
+-- Dependencies: 213
+-- Name: zvire_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.zvire_id_seq OWNED BY public.zvire.id;
+
+
+--
+-- TOC entry 3454 (class 2604 OID 16451)
+-- Name: hmotnost id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.hmotnost ALTER COLUMN id SET DEFAULT nextval('public.hmotnost_id_seq'::regclass);
+
+
+--
+-- TOC entry 3446 (class 2604 OID 16391)
+-- Name: staj id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.staj ALTER COLUMN id SET DEFAULT nextval('public.staj_id_seq'::regclass);
+
+
+--
+-- TOC entry 3447 (class 2604 OID 16400)
+-- Name: uzivatel id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.uzivatel ALTER COLUMN id SET DEFAULT nextval('public.uzivatel_id_seq'::regclass);
+
+
+--
+-- TOC entry 3453 (class 2604 OID 16415)
+-- Name: zvire id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zvire ALTER COLUMN id SET DEFAULT nextval('public.zvire_id_seq'::regclass);
+
+
+--
+-- TOC entry 3465 (class 2606 OID 16453)
+-- Name: hmotnost hmotnost_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.hmotnost
+    ADD CONSTRAINT hmotnost_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3457 (class 2606 OID 16394)
+-- Name: staj staj_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.staj
+    ADD CONSTRAINT staj_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3459 (class 2606 OID 16405)
+-- Name: uzivatel uzivatel_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.uzivatel
+    ADD CONSTRAINT uzivatel_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3463 (class 2606 OID 16417)
+-- Name: zvire zvire_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zvire
+    ADD CONSTRAINT zvire_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3460 (class 1259 OID 16419)
+-- Name: idx_5cc38e3f5197de40; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_5cc38e3f5197de40 ON public.zvire USING btree (id_staj);
+
+
+--
+-- TOC entry 3461 (class 1259 OID 16418)
+-- Name: idx_5cc38e3fd84e9520; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_5cc38e3fd84e9520 ON public.zvire USING btree (id_uzivatele);
+
+
+--
+-- TOC entry 3466 (class 1259 OID 16454)
+-- Name: idx_b2b521ffbb114a72; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_b2b521ffbb114a72 ON public.hmotnost USING btree (id_zvirete);
+
+
+--
+-- TOC entry 3455 (class 1259 OID 16395)
+-- Name: idx_dab7c242d84e9520; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_dab7c242d84e9520 ON public.staj USING btree (id_uzivatele);
+
+
+--
+-- TOC entry 3469 (class 2606 OID 16481)
+-- Name: zvire fk_5cc38e3f5197de40; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zvire
+    ADD CONSTRAINT fk_5cc38e3f5197de40 FOREIGN KEY (id_staj) REFERENCES public.staj(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3468 (class 2606 OID 16420)
+-- Name: zvire fk_5cc38e3fd84e9520; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zvire
+    ADD CONSTRAINT fk_5cc38e3fd84e9520 FOREIGN KEY (id_uzivatele) REFERENCES public.uzivatel(id) ON DELETE RESTRICT;
+
+
+--
+-- TOC entry 3470 (class 2606 OID 16460)
+-- Name: hmotnost fk_b2b521ffbb114a72; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.hmotnost
+    ADD CONSTRAINT fk_b2b521ffbb114a72 FOREIGN KEY (id_zvirete) REFERENCES public.zvire(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3467 (class 2606 OID 16406)
+-- Name: staj fk_dab7c242d84e9520; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.staj
+    ADD CONSTRAINT fk_dab7c242d84e9520 FOREIGN KEY (id_uzivatele) REFERENCES public.uzivatel(id) ON DELETE RESTRICT;
+
+
+-- Completed on 2022-08-23 09:52:19 CEST
+
+--
+-- PostgreSQL database dump complete
+--
+

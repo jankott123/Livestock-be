@@ -48,7 +48,7 @@ class LoginManager
     public function create_tokens($id, $username)
     {
         $secret_key = $_ENV['SECRET_KEY'];
-        $secret_key2 = $_ENV['SECRET_KEY'];
+        $secret_key2 = $_ENV['SECRET_KEY2'];
         $issuer_claim = "THE_ISSUER"; // this can be the servername
         $audience_claim = "THE_AUDIENCE";
         $issuedat_claim = time(); // issued at

@@ -9,6 +9,7 @@ use App\Model\Authorization;
 use App\Model\Repository\StajRepository;
 use App\Model\Repository\ZvireRepository;
 
+
 class GrafPresenter extends Presenter
 {
     private $auth;
@@ -41,14 +42,19 @@ class GrafPresenter extends Presenter
         header("Access-Control-Allow-Origin: http://localhost:3000");
         header("Access-Control-Allow-Credentials: true");
 
+     
         $id_uzivatel = $this->auth->authorize();
+        
+       // $this->sendJson($id_uzivatel);
 
+        
         if ($id_uzivatel) {
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $zastoupeni = $this->zvire->zastoupeniZvirat($id_uzivatel);
                 $this->sendJson($zastoupeni);
             }
         }
+        
     }
 
     public function actionDojeneZvirata()
@@ -93,6 +99,7 @@ class GrafPresenter extends Presenter
         header("Access-Control-Allow-Credentials: true");
 
         $id_uzivatel = $this->auth->authorize();
+        
 
         if ($id_uzivatel) {
             $zvirata = $this->zvire->vratVsechnaZvirataUzitele($id_uzivatel);
