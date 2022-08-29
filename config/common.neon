@@ -21,7 +21,6 @@ services:
 	- App\Router\RouterFactory::createRouter
 	- App\Model\LoginManager
 	- App\Model\RegisterManager
-	- App\Model\StajManager
 	- App\Model\Authorization
 	- App\Model\Entity\Uzivatel
 	- App\Model\Repository\UzivatelRepository
